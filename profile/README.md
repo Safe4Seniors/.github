@@ -10,21 +10,20 @@ Safe4Seniors delivers daily AI-powered companion calls to older adults, monitori
 
 | Repo | Description |
 |------|-------------|
-| `core` | Voice AI call engine — Amazon Connect, Deepgram STT, Claude, ElevenLabs TTS |
+| `core` | Voice AI call engine — Amazon Connect, NVIDIA Riva STT/TTS, Claude (Bedrock) |
 | `platform` | HIPAA-compliant API, Amazon Connect + NVIDIA Riva on EC2 |
 | `dashboard` | Caregiver and family portal — real-time alerts, trend visualization |
 | `eval` | Test suite for the "Sunny" AI persona across senior interaction scenarios |
-| `nimipuutímt` | Nez Perce language model — Whisper ASR fine-tuning, VITS/Coqui TTS |
+| `nimipuutímt` | Nez Perce language model — NVIDIA NeMo ASR/TTS fine-tuning |
 
 ---
 
 ## Architecture
 
 ```
-Amazon Connect  →  Deepgram STT  →  Claude (Bedrock)  →  ElevenLabs TTS  →  Amazon Connect
-                                          ↓
-                                Cloudflare D1 / R2
-                                NVIDIA Riva (on-premise ASR)
+Amazon Connect  →  NVIDIA Riva STT  →  Claude (Bedrock)  →  NVIDIA Riva TTS  →  Amazon Connect
+                                              ↓
+                                    Cloudflare D1 / R2
 ```
 
 **Stack:** Python 3.12 · FastAPI · Cloudflare Workers/D1/R2/KV · AWS (EC2, Bedrock, Connect) · NVIDIA Riva
